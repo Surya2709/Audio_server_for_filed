@@ -3,6 +3,16 @@ Web API that simulates the behavior of an audio file  server while using a Mongo
 
 
 
+to run  in cmd:
+
+    set FLASK_ENV = development
+
+    set FLASK_APP = app.py 
+
+    flask run
+
+
+
 
 create api 
 
@@ -32,7 +42,7 @@ create api
                     }
                 }     
 
-                
+
             audio book :
 
             {

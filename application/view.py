@@ -6,8 +6,7 @@ from application.extension import CRUD
 blueprint = Blueprint("view", __name__, url_prefix="/")
 
 
-
-@blueprint.route("/create", methods=["POST"])
+@blueprint.route("api/create", methods=["POST"])
 def create_api():
     if request.method == "POST":
         data = request.json
@@ -17,7 +16,7 @@ def create_api():
     return "The request is invalid: 400 bad request", 400
 
 
-@blueprint.route("/update/<audioFileType>/<audioFileID>", methods=["PUT"])
+@blueprint.route("api/update/<audioFileType>/<audioFileID>", methods=["PUT"])
 def update_api(audioFileType,audioFileID):
     if request.method == "PUT":
         data = request.json
@@ -26,7 +25,7 @@ def update_api(audioFileType,audioFileID):
         return response
     return "The request is invalid: 400 bad request", 400
 
-@blueprint.route("/delete/<audioFileType>/<audioFileID>", methods=["DELETE"])
+@blueprint.route("api/delete/<audioFileType>/<audioFileID>", methods=["DELETE"])
 def delete_api(audioFileType, audioFileID):
     if request.method == "DELETE":
 
@@ -36,7 +35,10 @@ def delete_api(audioFileType, audioFileID):
     return "The request is invalid: 400 bad request", 400
 
 @blueprint.route(
-    "/get/<audioFileType>", methods=["GET"], defaults={"audioFileID": None}
+    "api/get/<audioFileType>", methods=["GET"], defaults={"audioFileID": None}
+)
+@blueprint.route(
+    "api/get/<audioFileType>/", methods=["GET"], defaults={"audioFileID": None}
 )
 @blueprint.route("/get/<audioFileType>/<audioFileID>", methods=["GET"])
 def get_api(audioFileType, audioFileID):
