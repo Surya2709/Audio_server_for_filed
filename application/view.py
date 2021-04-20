@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from extension import 
+from application.extension import CRUD
 
 
 blueprint = Blueprint("view", __name__, url_prefix="/")
@@ -12,7 +12,8 @@ blueprint = Blueprint("view", __name__, url_prefix="/")
 def create_api():
     if request.method == "POST":
         data = request.json
-        response = creator.create(data)
+        obj = CRUD(data=data)
+        response = obj.create()
         return response
     return "The request is invalid: 400 bad request", 400
 
@@ -21,7 +22,8 @@ def create_api():
 def update_api(audioFileType,audioFileID):
     if request.method == "PUT":
         data = request.json
-        response = updater.update(data,audioFileType,audioFileID)
+        obj = CRUD(data=data,audioFileID=audioFileID,audioFileType=audioFileID)
+        response = obj.update()
         return response
     return "The request is invalid: 400 bad request", 400
 
@@ -30,9 +32,10 @@ def update_api(audioFileType,audioFileID):
 @blueprint.route("/delete/<audioFileType>/<audioFileID>", methods=["DELETE"])
 def delete_api(audioFileType, audioFileID):
     if request.method == "DELETE":
-        response = deleter.delete(audioFileType,audioFileID)
-        return response
 
+        obj = CRUD(audioFileType=audioFileType,audioFileID=audioFileID)
+        response = obj.delete()
+        return response
     return "The request is invalid: 400 bad request", 400
 
 
@@ -42,7 +45,8 @@ def delete_api(audioFileType, audioFileID):
 @blueprint.route("/get/<audioFileType>/<audioFileID>", methods=["GET"])
 def get_api(audioFileType, audioFileID):
     if request.method == "GET":
-        response = getter.get(audioFileType,audioFileID)
+        obj = CRUD(audioFileID=audioFileID,audioFileType=audioFileType)
+        response = obj.get()
         return response
     return "The request is invalid: 400 bad request", 400
 

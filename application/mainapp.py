@@ -23,9 +23,4 @@ def register_blueprints(app):
     return None
 
 
-    
-application/extension.py
-#	application/mainapp.py
-#	application/settings.py
-#	application/view.py
-#
+
