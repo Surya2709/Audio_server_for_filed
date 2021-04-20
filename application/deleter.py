@@ -6,17 +6,17 @@ mongo = database.mongo
 
 def delete(audioFileType,audioFileID):
     if audioFileType =="song":
-        id = str(audioFileID)
+        
         try:
-            mongo.audioserver.Song.delete_one({"ID": id})
+            mongo.audioserver.Song.delete_one({"ID":int(audioFileID)})
             return "200 ok",200
         except:
             return "The request is invalid: 400 bad request", 400
 
     elif audioFileType =="podcast":
         id = str(audioFileID)
-       try:
-            mongo.audioserver.Podcast.delete_one({"ID":id})
+        try:
+            mongo.audioserver.Podcast.delete_one({"ID":int(audioFileID)})
             return "200 ok",200
         except:
             return "The request is invalid: 400 bad request", 400
@@ -24,7 +24,7 @@ def delete(audioFileType,audioFileID):
     elif audioFileType =="audiobook":
         id = str(audioFileID)
         try:
-            mongo.audioserver.Audiobooks.delete_one({"ID":id})
+            mongo.audioserver.Audiobooks.delete_one({"ID":int(audioFileID)})
             return "200 ok",200
         except:
             return "The request is invalid: 400 bad request", 400
