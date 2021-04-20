@@ -184,19 +184,25 @@ url : /api/delete/audiobook/1 - deletes the  record present at id 1
     description: get all data present in <audioFileType> database having id audioFileID`
 
 
-    urls
-    song,
+    <b>urls</b>
+    
 
-    url1 = `/api/get/song` - get all song in database
-    url2 = `/api/get/song/1` - get song having id 1       
-    podcast
+        <b>song, </b>
 
-    url1 = `/api/get/podcast` - get all data in podcast in database
-    url2 = `/api/get/podcast/1` - get song having id 1
-    audiobook
+            url1 = `/api/get/song` - get all song in database
+            url2 = `/api/get/song/1` - get song having id 1   
 
-    url1 = `/api/get/audiobook` - get all data in audiobook in database
-    url2 = `/api/get/audiobook/1` - get data having id 1
+
+        <b>podcast</b>
+
+            url1 = `/api/get/podcast` - get all data in podcast in database
+            url2 = `/api/get/podcast/1` - get song having id 1
+
+
+        <b>audiobook</b>
+
+            url1 = `/api/get/audiobook` - get all data in audiobook in database
+            url2 = `/api/get/audiobook/1` - get data having id 1
 
 <b><h3> Response for the Request: </h3> </b>
 
