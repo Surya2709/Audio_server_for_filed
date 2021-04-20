@@ -6,6 +6,12 @@ from application.extension import CRUD
 blueprint = Blueprint("view", __name__, url_prefix="/")
 
 
+
+@blueprint.route("/")
+def home():
+    return "Server is Live !"
+
+
 @blueprint.route("api/create", methods=["POST"])
 def create_api():
     if request.method == "POST":
