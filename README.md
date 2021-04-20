@@ -198,6 +198,6 @@ url : /api/delete/audiobook/1 - deletes the  record present at id 1
 
 <b><h3> Response for the Request: </h3> </b>
 
-- Action is successful: 200 OK
-- The request is invalid: 400 bad request
-- Any error: 500 internal server error
+        - Action is successful: <b>200 OK </b>
+        - The request is invalid: <b> 400 bad request </b>
+        - Any error: <b> 500 internal server error </b>
