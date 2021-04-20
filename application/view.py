@@ -2,9 +2,8 @@ from flask import Blueprint, request
 from application.extension import CRUD
 
 
+
 blueprint = Blueprint("view", __name__, url_prefix="/")
-
-
 
 
 
@@ -22,12 +21,10 @@ def create_api():
 def update_api(audioFileType,audioFileID):
     if request.method == "PUT":
         data = request.json
-        obj = CRUD(data=data,audioFileID=audioFileID,audioFileType=audioFileID)
+        obj = CRUD(data=data,audioFileID=audioFileID,audioFileType=audioFileType)
         response = obj.update()
         return response
     return "The request is invalid: 400 bad request", 400
-
-
 
 @blueprint.route("/delete/<audioFileType>/<audioFileID>", methods=["DELETE"])
 def delete_api(audioFileType, audioFileID):
@@ -37,7 +34,6 @@ def delete_api(audioFileType, audioFileID):
         response = obj.delete()
         return response
     return "The request is invalid: 400 bad request", 400
-
 
 @blueprint.route(
     "/get/<audioFileType>", methods=["GET"], defaults={"audioFileID": None}
@@ -50,7 +46,4 @@ def get_api(audioFileType, audioFileID):
         return response
     return "The request is invalid: 400 bad request", 400
 
-        
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    

@@ -1,8 +1,7 @@
 import datetime
-from application import database
 from flask import jsonify
-from database import Mongo
-from settings import DATABASE_URL,DB_PORT
+from application.settings import DATABASE_URL,DB_PORT
+from application.database import Mongo
 
 
 class CRUD:
@@ -10,13 +9,10 @@ class CRUD:
         self.data = data
         self.audioFileType = audioFileType
         self.audioFileID = audioFileID
-        self.port = DB_PORT
-        self.host = DATABASE_URL
-        self.timeout = 1000
-        self.Mongo_instance = Mongo(host=self.host,port=self.port,time_out=self.timeout)
+        
+        self.Mongo_instance = Mongo(host=DATABASE_URL,port=int(DB_PORT),time_out=1000)
         self.mongo = self.Mongo_instance.create_session()
-
-
+    
     def create(self):
         type = self.data.get("audioFileType", None)
         if type is None:
@@ -209,21 +205,24 @@ class CRUD:
         metadata = self.data.get("audioFileMetadata")
 
         if self.audioFileType == "song":
+            print("enters")
             for item in metadata:
                 if item =="Uploaded_time":
                     metadata['Uploaded_time'] = str(datetime.datetime.utcnow())
                 if item not in ["Uploaded_time","Duration_time","Name"]:
-                    
+                    print("here-0")
                     return "The request is invalid: 400 bad request", 400
             try:
                 name = metadata["Name"]
                 if len(name)>100 :
+                    print("here-1")
                     return "The request is invalid: 400 bad request", 400               
     
                 duration = metadata["Duration_time"]
                 uploaded_time = metadata["Uploaded_time"]
 
             except:
+                print("here-2")
                 return "The request is invalid: 400 bad request", 400
             try: 
                 self.mongo.audioserver.Song.update_one({'ID':int(self.audioFileID)},{"$set":{'Name': name,'Duration':duration , 'Uploaded_time':uploaded_time}})
@@ -299,7 +298,9 @@ class CRUD:
             except:
                 return "Internal Server Error : 500",500
         else:
+            print("here b last")
             return "The request is invalid: 400 bad request", 400
+        print("at last")
         return "The request is invalid: 400 bad request", 400
 
 

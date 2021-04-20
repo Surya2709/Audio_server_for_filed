@@ -5,13 +5,10 @@ class Mongo:
     def __init__(self,host,port,time_out):
 
         self.host = host
-        self.port = port
+        self.port = int(port)
         self.timeout = time_out
     def create_session(self):
-        try:
-            mongo = pymongo.MongoClient(self.host,port=self.port,serverSelectionTimeoutMS=self.timeout)
-            mongo.server_info()
-            return mongo
-        except:
-            print( " ERROR - can't connect to db ")
+        mongo = pymongo.MongoClient(self.host,port=self.port,serverSelectionTimeoutMS=self.timeout)
+        mongo.server_info()
+        return mongo
     

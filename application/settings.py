@@ -6,6 +6,6 @@ env.read_env()
 
 DATABASE_URL = env.str("DATABASE")
 DB_PORT = env.str("DB_PORT")
-ENV = env.str("FLASK_ENV")
-
+ENV = env.str("FLASK_ENV", default="production")
+DEBUG = ENV == "development"
 
