@@ -11,7 +11,7 @@ def delete(audioFileType,audioFileID):
             mongo.audioserver.Song.delete_one({"ID":int(audioFileID)})
             return "200 ok",200
         except:
-            return "The request is invalid: 400 bad request", 400
+            return "Internal server error ", 500
 
     elif audioFileType =="podcast":
         id = str(audioFileID)
@@ -19,15 +19,14 @@ def delete(audioFileType,audioFileID):
             mongo.audioserver.Podcast.delete_one({"ID":int(audioFileID)})
             return "200 ok",200
         except:
-            return "The request is invalid: 400 bad request", 400
-
+            return "Internal server error ", 500
     elif audioFileType =="audiobook":
         id = str(audioFileID)
         try:
             mongo.audioserver.Audiobooks.delete_one({"ID":int(audioFileID)})
             return "200 ok",200
         except:
-            return "The request is invalid: 400 bad request", 400
+            return "Internal server error ", 500
     else:
         return "The request is invalid: 400 bad request", 400
 

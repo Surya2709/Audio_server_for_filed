@@ -29,10 +29,9 @@ def create(data):
             return "200 ok", 200
         except:
             
-            return "The request is invalid: 400 bad request", 400
+            return "Internal server error ", 500
 
     elif type == "podcast":
-        
         participant_ = ""
         try:
             participants = metadata.get("Participants")
@@ -44,8 +43,7 @@ def create(data):
             if (
                 len(participants) > 10
                 or any(i for i in participants if len(i) > 100)
-            ):
-                
+            ):      
                 return "The request is invalid: 400 bad request", 400
             participant_ = ",".join(participants)
             
@@ -62,8 +60,6 @@ def create(data):
                     return "The request is invalid: 400 bad request", 400
             except:
                 return "The request is invalid: 400 bad request", 400
-
-
             uploaded_time  = datetime.datetime.utcnow()
             id = mongo.audioserver.Podcast.count()
             id = int(id)+1
@@ -72,7 +68,7 @@ def create(data):
                 mongo.audioserver.Podcast.insert({'ID':id,'Name': name, 'Duration': duration,'Uploaded_time': uploaded_time, 'Host': host, "Participants":participant_})
                 return "200 ok", 200
             except:
-                return "The request is invalid: 400 bad request", 400
+                return "Internal server error ", 500
 
             
     elif type == "audiobook":
@@ -86,8 +82,7 @@ def create(data):
                 metadata["Duration_time"] = 0
             duration = metadata["Duration_time"]
             if len(title)>100 or len(author) >100 or len(narrator)>100:
-                return "The request is invalid: 400 bad request", 400 
-            
+                return "The request is invalid: 400 bad request", 400  
         except:
             return "The request is invalid: 400 bad request", 400
 
@@ -99,7 +94,6 @@ def create(data):
             mongo.audioserver.Audiobooks.insert({'ID':id,'Title': title,'Author':author, 'Narrator':narrator,'Duration': duration,'Uploaded_time': uploaded_time })
             return "200 ok", 200
         except:
-            
-            return "The request is invalid: 400 bad request", 400
+            return "Internal server error ", 500
     else:
         return "The request is invalid: 400 bad request", 400
