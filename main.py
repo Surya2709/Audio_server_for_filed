@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-from application import creator,updater
+from application import creator,updater,deleter
 
 
 app = Flask(__name__)
@@ -22,6 +22,16 @@ def update_api(audioFileType,audioFileID):
         data = request.json
         response = updater.update(data,audioFileType,audioFileID)
         return response
+    return "The request is invalid: 400 bad request", 400
+
+
+
+@app.route("/delete/<audioFileType>/<audioFileID>", methods=["DELETE"])
+def delete_api(audioFileType, audioFileID):
+    if request.method == "DELETE":
+        response = deleter.delete(audioFileType,audioFileID)
+        return response
+
     return "The request is invalid: 400 bad request", 400
 
 
