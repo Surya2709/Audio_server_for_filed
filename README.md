@@ -54,7 +54,7 @@ code info:
 
     The API has 4 End Point.
 
-1. create api 
+1. Create  
 
 
         url = /api/create 
