@@ -16,7 +16,7 @@ def create(data):
             # check duration time and upload time
             if int(metadata["Duration_time"]) <= 0:
                 metadata["Duration_time"] = 0
-            duaration = metadata["Duration_time"]
+            duration = metadata["Duration_time"]
             if len(name)>100 :
                 return "The request is invalid: 400 bad request", 400               
         except:
@@ -25,7 +25,7 @@ def create(data):
         id = mongo.audioserver.Song.count()
         id = id+1
         try:
-            mongo.audioserver.Song.insert({'ID':id,'Name': name, 'Duration': duaration,'Uploaded_time': uploaded_time})
+            mongo.audioserver.Song.insert({'ID':id,'Name': name, 'Duration': duration,'Uploaded_time': uploaded_time})
             return "200 ok", 200
         except:
             
@@ -55,7 +55,7 @@ def create(data):
                 # check duration time and upload time
                 if int(metadata["Duration_time"]) <= 0:
                     metadata["Duration_time"] = 0
-                duaration = metadata["Duration_time"]
+                duration = metadata["Duration_time"]
                 if len(name)>100 :
                     return "The request is invalid: 400 bad request", 400 
                 if len(host)>100 :
@@ -69,7 +69,7 @@ def create(data):
             id = int(id)+1
             
             try:
-                mongo.audioserver.Podcast.insert({'ID':id,'Name': name, 'Duration': duaration,'Uploaded_time': uploaded_time, 'Host': host, "Participants":participant_})
+                mongo.audioserver.Podcast.insert({'ID':id,'Name': name, 'Duration': duration,'Uploaded_time': uploaded_time, 'Host': host, "Participants":participant_})
                 return "200 ok", 200
             except:
                 return "The request is invalid: 400 bad request", 400
@@ -84,7 +84,7 @@ def create(data):
             # check duration time and upload time
             if int(metadata["Duration_time"]) <= 0:
                 metadata["Duration_time"] = 0
-            duaration = metadata["Duration_time"]
+            duration = metadata["Duration_time"]
             if len(title)>100 or len(author) >100 or len(narrator)>100:
                 return "The request is invalid: 400 bad request", 400 
             
@@ -96,7 +96,7 @@ def create(data):
         id = int(id)+1
             
         try:
-            mongo.audioserver.Audiobooks.insert({'ID':id,'Title': title,'Author':author, 'Narrator':narrator,'Duration': duaration,'Uploaded_time': uploaded_time })
+            mongo.audioserver.Audiobooks.insert({'ID':id,'Title': title,'Author':author, 'Narrator':narrator,'Duration': duration,'Uploaded_time': uploaded_time })
             return "200 ok", 200
         except:
             

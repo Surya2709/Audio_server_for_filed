@@ -19,6 +19,20 @@ create api
             }
 
 
+            podcast : 
+
+                {
+                    "audioFileType":"podcast",
+                    "audioFileMetadata":{
+                            "Uploaded_time":"0",
+                            "Duration_time":102,
+                            "Name":"in the end.mp4",
+                            "Host":"linkin park - arizona park",
+                            "Participants":["linkin park","us","american band"]
+                    }
+                }     
+
+                
             audio book :
 
             {
@@ -33,18 +47,6 @@ create api
             }
 
 
-            podcast : 
-
-                {
-                    "audioFileType":"podcast",
-                    "audioFileMetadata":{
-                            "Uploaded_time":"0",
-                            "Duration_time":102,
-                            "Name":"in the end.mp4",
-                            "Host":"linkin park - arizona park",
-                            "Participants":["linkin park","us","american band"]
-                    }
-                }     
 
 
 
