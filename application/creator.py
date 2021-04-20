@@ -65,7 +65,7 @@ def create(data):
 
 
             uploaded_time  = datetime.datetime.utcnow()
-            id = mongo.audioserver.Podcast.estimated_document_count()
+            id = mongo.audioserver.Podcast.count()
             id = int(id)+1
             
             try:
@@ -92,7 +92,7 @@ def create(data):
             return "The request is invalid: 400 bad request", 400
 
         uploaded_time  = datetime.datetime.utcnow()
-        id = mongo.audioserver.Audiobook.estimated_document_count()
+        id = mongo.audioserver.Audiobooks.count()
         id = int(id)+1
             
         try:
