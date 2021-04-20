@@ -1,9 +1,17 @@
 import pymongo
 
 
-try:
-    mongo = pymongo.MongoClient("localhost",port=27017,serverSelectionTimeoutMS=1000)
+class Mongo:
+    def __init__(self,host,port,time_out):
 
-    mongo.server_info()
-except:
-    print( " ERROR - can't connect to db ")
+        self.host = host
+        self.port = port
+        self.timeout = time_out
+    def create_session(self):
+        try:
+            mongo = pymongo.MongoClient(self.host,port=self.port,serverSelectionTimeoutMS=self.timeout)
+            mongo.server_info()
+            return mongo
+        except:
+            print( " ERROR - can't connect to db ")
+    
