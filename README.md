@@ -54,7 +54,7 @@ code info:
 
     The API has 4 End Point.
 
-1. <b>Create</b>  
+<b>1. Create</b>  
 
 
         url = /api/create 
@@ -110,7 +110,7 @@ code info:
 
 
 
-2. <b>Update</b>
+ <b>2. Update</b>
 
         url = /api/update/<audioFileType>/<audioFileID> 
         method = PUT
@@ -162,7 +162,7 @@ code info:
                                 }     
 
 
-3. <b> Delete </b>
+<b>3.  Delete </b>
 
 url = /api/delete/<audioFileType>/<audioFileID>
 method = DELETE
@@ -176,7 +176,7 @@ audiobook
 url : /api/delete/audiobook/1 - deletes the  record present at id 1
 
 
-4. <b> Get </b>
+<b> 4.Get </b>
     url: /api/<audioFileType>
     description: get all the data present in <audioFileType> database 2.- url: /api/<audioFileType>/<audioFileID>
     description: get all data present in <audioFileType> database having id audioFileID`
