@@ -16,12 +16,13 @@ def create_api():
     return "The request is invalid: 400 bad request", 400
 
 
-@app.route("/update/<audioFileType>/<audioFileID>", methods=["PUT"])
-def update_api(audioFileType, audioFileID):
-    if request.method == "PUT":
+@app.route("/update/<audioFileType>/<audioFileID>", methods=["POST"])
+def update_api(audioFileType,audioFileID):
+    if request.method == "POST":
         data = request.json
         response = updater.update(data,audioFileType,audioFileID)
         return response
+
     return "The request is invalid: 400 bad request", 400
 
 

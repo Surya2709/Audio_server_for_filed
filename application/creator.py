@@ -12,11 +12,11 @@ def create(data):
     metadata = data.get("audioFileMetadata")
     if type == "song":
         try:         
-            name = metadata["name"]
+            name = metadata["Name"]
             # check duration time and upload time
-            if int(metadata["duration_time"]) <= 0:
-                metadata["duration_time"] = 0
-            duaration = metadata["duration_time"]
+            if int(metadata["Duration_time"]) <= 0:
+                metadata["Duration_time"] = 0
+            duaration = metadata["Duration_time"]
             if len(name)>100 :
                 return "The request is invalid: 400 bad request", 400               
         except:
@@ -35,7 +35,7 @@ def create(data):
         
         participant_ = ""
         try:
-            participants = metadata.get("participants")
+            participants = metadata.get("Participants")
         except:
             participant_ = ""
         if participants is None:
@@ -50,12 +50,12 @@ def create(data):
             participant_ = ",".join(participants)
             
             try:
-                host = metadata['host']
-                name = metadata["name"]
+                host = metadata['Host']
+                name = metadata["Name"]
                 # check duration time and upload time
-                if int(metadata["duration_time"]) <= 0:
-                    metadata["duration_time"] = 0
-                duaration = metadata["duration_time"]
+                if int(metadata["Duration_time"]) <= 0:
+                    metadata["Duration_time"] = 0
+                duaration = metadata["Duration_time"]
                 if len(name)>100 :
                     return "The request is invalid: 400 bad request", 400 
                 if len(host)>100 :
@@ -78,13 +78,13 @@ def create(data):
     elif type == "audiobook":
 
         try:
-            title = metadata['title']
-            author = metadata["author"]
-            narrator = metadata["narrator"]
+            title = metadata['Title']
+            author = metadata["Author"]
+            narrator = metadata["Narrator"]
             # check duration time and upload time
-            if int(metadata["duration_time"]) <= 0:
-                metadata["duration_time"] = 0
-            duaration = metadata["duration_time"]
+            if int(metadata["Duration_time"]) <= 0:
+                metadata["Duration_time"] = 0
+            duaration = metadata["Duration_time"]
             if len(title)>100 or len(author) >100 or len(narrator)>100:
                 return "The request is invalid: 400 bad request", 400 
             
@@ -96,7 +96,7 @@ def create(data):
         id = int(id)+1
             
         try:
-            mongo.audioserver.Audiobooks.insert({'ID':id,'Title of the audiobook': title,'Author of the title':author, 'Narrator':narrator,'Duration': duaration,'Uploaded_time': uploaded_time })
+            mongo.audioserver.Audiobooks.insert({'ID':id,'Title': title,'Author':author, 'Narrator':narrator,'Duration': duaration,'Uploaded_time': uploaded_time })
             return "200 ok", 200
         except:
             
